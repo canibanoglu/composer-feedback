@@ -24,6 +24,8 @@ const List = styled.ul`
   padding: 0;
   text-align: left;
   border-right: 1px solid white;
+  border-left: 1px solid white;
+  overflow: auto;
 `;
 
 const Header = styled.div`
@@ -32,6 +34,7 @@ const Header = styled.div`
   display: flex;
   padding: 0 1rem;
   height: 5rem;
+  flex-wrap: wrap;
 `;
 
 const ListItem  = styled.li`
@@ -39,6 +42,9 @@ const ListItem  = styled.li`
   border-bottom: 1px solid white;
   cursor: pointer;
   padding: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const AddNewButton = styled.button`
@@ -46,14 +52,16 @@ const AddNewButton = styled.button`
   background-color: transparent;
   border: 1px solid white;
   color: white;
-  padding: 0.5rem 2rem
+  padding: 0.5rem 1rem;
 `;
 
 const TextContainer = styled.div`
+  height: calc(100% - 5rem);
   align-items: center;
   justify-content: center;
-  height: 100%;
   display: flex;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
 `;
 
 const Input = styled.input`
@@ -74,8 +82,10 @@ export default class EntityList extends Component {
   };
 
   onAddButtonClick = () => {
+    const { onItemClick } = this.props;
     this.setState({ adding: true, focusedIndex: null }, () => {
       this.input.focus();
+      onItemClick(null);
     });
   };
 
@@ -129,11 +139,13 @@ export default class EntityList extends Component {
   };
 
   renderNoData = () => {
-    return <TextContainer><span>Please select a customer</span></TextContainer>
+    const { noDataMessage } = this.props;
+    return <TextContainer><span>{ noDataMessage }</span></TextContainer>
   };
 
   renderEmpty = () => {
-    return <TextContainer><span>There are no items here</span></TextContainer>
+    const { emptyMessage } = this.props;
+    return <TextContainer><span>{ emptyMessage }</span></TextContainer>
   };
 
   renderAddButton = () => {

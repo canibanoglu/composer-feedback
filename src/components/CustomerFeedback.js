@@ -20,6 +20,9 @@ const Title = styled.h2`
   margin: 0;
   padding: 1rem;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export default class CustomerFeedback extends Component {

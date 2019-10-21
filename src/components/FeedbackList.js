@@ -6,7 +6,7 @@ import {selectCustomerFeedback} from "../selectors/feedbackSelectors";
 import styled from "styled-components";
 
 const renderFeedbackItem = feedback => {
-  return <span>{feedback.message}</span>
+  return <span title={feedback.message}>{feedback.message}</span>
 };
 
 const StyledEntityList = styled(EntityList)`
@@ -23,7 +23,13 @@ class FeedbackList extends Component {
   render() {
     const { feedbackItems } = this.props;
     return (
-        <StyledEntityList title="Feedback" items={feedbackItems} onItemCreate={this.onCreateFeedback} onItemClick={() => {}} renderItem={renderFeedbackItem}/>
+        <StyledEntityList title="Feedback"
+                          items={feedbackItems}
+                          onItemCreate={this.onCreateFeedback}
+                          emptyMesage="This customer has no feedback"
+                          noDataMessage="Please select a customer"
+                          onItemClick={() => {}}
+                          renderItem={renderFeedbackItem}/>
     );
   }
 }

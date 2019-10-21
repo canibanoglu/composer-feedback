@@ -9,14 +9,19 @@ const StyledEntityList = styled(EntityList)`
 `;
 
 const renderCustomer = customer => {
-  return <span>{customer.name}</span>;
+  return <span title={customer.name}>{customer.name}</span>;
 };
 
 class CustomerList extends Component {
   render() {
     const { customers, addCustomer, onSelectCustomer } = this.props;
     return (
-        <StyledEntityList title="Customers" items={customers} onItemCreate={addCustomer} onItemClick={onSelectCustomer} renderItem={renderCustomer}/>
+        <StyledEntityList title="Customers"
+                          emptyMesage="There are no customers"
+                          items={customers}
+                          onItemCreate={addCustomer}
+                          onItemClick={onSelectCustomer}
+                          renderItem={renderCustomer} />
     );
   }
 }
