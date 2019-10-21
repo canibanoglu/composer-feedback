@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 
-// TODO - should click outside get out of add mode?
-
 const Container = styled.div`
   color: white;
   font-size: 1rem;
